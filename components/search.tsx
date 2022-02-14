@@ -1,14 +1,11 @@
-import { useState } from 'react';
-import styles from './search.module.css';
-import { usePost } from '../hooks/use-post';
+import { useState } from "react";
+import styles from "./search.module.css";
+import { usePost } from "../hooks/use-post";
 
 export const Search = () => {
-
-	const [postId, setPostId] = useState('');
+	const [postId, setPostId] = useState("");
 
 	const { data: post } = usePost(postId);
-
-
 
 	return (
 		<div className={styles.container}>
@@ -16,11 +13,10 @@ export const Search = () => {
 
 			<input
 				className={styles.input}
-				onChange={(event) => setPostId(event.target.value)}/>
+				onChange={(event) => setPostId(event.target.value)}
+			/>
 
-				{post && !Array.isArray(post) && (
-					<div>{post.title}</div>
-				)}
+			{post && !Array.isArray(post) && <div>{post.title}</div>}
 		</div>
 	);
 };

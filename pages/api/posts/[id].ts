@@ -1,27 +1,21 @@
+import { db } from "../../../db";
 
-import { db } from '../../../db';
-
-async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-
+async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 	try {
-		if (req.method === 'GET') {
+		if (req.method === "GET") {
 			const id = req.query.id;
 
 			const post = db.getPost(id);
-			if(post) {
+			if (post) {
 				res.status(200).json(post);
 			} else {
 				res.status(200).json({
-					message: 'something went wrong',
+					message: "something went wrong",
 				});
 			}
 		}
 
-		if (req.method === 'DELETE') {
-
+		if (req.method === "DELETE") {
 			const id = req.query.id;
 
 			db.deletePost(id);
@@ -30,14 +24,12 @@ async function handler(
 				message: `item ${id} was deleted`,
 			});
 		}
-
-	} catch(err) {
+	} catch (err) {
 		console.error(err);
 		res.status(500);
 		res.json({
-			message: 'An error happened'
+			message: "An error happened",
 		});
-
 	}
 }
 

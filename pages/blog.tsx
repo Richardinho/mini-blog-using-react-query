@@ -1,23 +1,21 @@
-import { useState, useEffect } from 'react';
-import { NextPage } from 'next';
-import { PostsList } from '../components/posts-list';
-import { CreatePost } from '../components/create-post';
-import { useInfinitePosts } from '../hooks/use-infinite-posts';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { PostDetail } from '../components/post-detail';
-import { Stats } from '../components/stats';
-import { Search } from '../components/search';
-
+import { useState, useEffect } from "react";
+import { NextPage } from "next";
+import { PostsList } from "../components/posts-list";
+import { CreatePost } from "../components/create-post";
+import { useInfinitePosts } from "../hooks/use-infinite-posts";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { PostDetail } from "../components/post-detail";
+import { Stats } from "../components/stats";
+import { Search } from "../components/search";
 
 function isSet(id) {
-	return id !== '';
+	return id !== "";
 }
 
 const Blog: NextPage = () => {
-
 	const posts = useInfinitePosts();
 
-	const [postId, setPostId] = useState('');
+	const [postId, setPostId] = useState("");
 
 	return (
 		<>
@@ -25,28 +23,24 @@ const Blog: NextPage = () => {
 
 			<div className="wrapper">
 				<div className="sidebar">
-
-					<a href="#" onClick={() => setPostId('')}>
+					<a href="#" onClick={() => setPostId("")}>
 						All Posts
 					</a>
 
-					<Stats/>
+					<Stats />
 
-					<Search/>
-
+					<Search />
 				</div>
 				<div className="main">
-
-					{isSet(postId) ?
-						<PostDetail id={postId} setPostId={setPostId}/>:
-						<PostsList setPostId={setPostId} posts={posts}/>
-				  }
-
+					{isSet(postId) ? (
+						<PostDetail id={postId} setPostId={setPostId} />
+					) : (
+						<PostsList setPostId={setPostId} posts={posts} />
+					)}
 				</div>
 			</div>
 		</>
 	);
-
 };
 
-export default Blog 
+export default Blog;

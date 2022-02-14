@@ -1,18 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { nanoid } from 'nanoid';
-import { db } from '../../../db';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { nanoid } from "nanoid";
+import { db } from "../../../db";
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
+	req: NextApiRequest,
+	res: NextApiResponse<Data>
 ) {
-
 	try {
-
-		if (req.method === 'GET') {
-
+		if (req.method === "GET") {
 			let {
-				query: {pageOffset}
+				query: { pageOffset },
 			} = req;
 
 			pageOffset = Number(pageOffset);
@@ -22,7 +19,6 @@ export default async function handler(
 			const posts = db.getPosts();
 
 			if (pageOffset || pageOffset === 0) {
-
 				const start = pageSize * pageOffset;
 				const end = start + pageSize;
 				const page = posts.slice(start, end);
@@ -36,8 +32,7 @@ export default async function handler(
 			res.status(200).json(posts);
 		}
 
-		if (req.method === 'POST') {
-
+		if (req.method === "POST") {
 			const post = JSON.parse(req.body);
 			post.id = nanoid();
 
@@ -46,8 +41,7 @@ export default async function handler(
 			res.status(200).json(post);
 		}
 
-		if (req.method === 'PUT') {
-
+		if (req.method === "PUT") {
 			const { id, title, content } = JSON.parse(req.body);
 
 			console.log(id, title, content);
@@ -61,12 +55,10 @@ export default async function handler(
 			db.updatePost(id, title, content);
 
 			res.status(200).json(post);
-
 		}
-
-	} catch(err) {
+	} catch (err) {
 		console.error(err);
 		res.status(500);
-		res.json({ message: 'An error happened'});
+		res.json({ message: "An error happened" });
 	}
 }
