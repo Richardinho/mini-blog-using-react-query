@@ -37,7 +37,6 @@ export const PostDetail = ({ id, setPostId }) => {
 
 	function deletePost() {
 		deleteMutation.mutate(id);
-		// do I need to delete the post from the cache too?
 		setPostId("");
 	}
 

@@ -44,8 +44,6 @@ export default async function handler(
 		if (req.method === "PUT") {
 			const { id, title, content } = JSON.parse(req.body);
 
-			console.log(id, title, content);
-
 			const post = {
 				id,
 				title,

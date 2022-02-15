@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 import { PostsList } from "../components/posts-list";
-import { CreatePost } from "../components/create-post";
 import { useInfinitePosts } from "../hooks/use-infinite-posts";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { PostDetail } from "../components/post-detail";
 import { Stats } from "../components/stats";
 import { Search } from "../components/search";

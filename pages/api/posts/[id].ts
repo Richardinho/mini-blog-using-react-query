@@ -6,6 +6,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 			const id = req.query.id;
 
 			const post = db.getPost(id);
+
 			if (post) {
 				res.status(200).json(post);
 			} else {
